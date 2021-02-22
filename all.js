@@ -13,6 +13,10 @@ updateList(data);
 function saveItem(e) {
   e.preventDefault();
   var str = document.querySelector(".textClass").value;
+  // 避免沒輸入資料，就按新增
+  if (str.trim() === "") {
+    alert("請輸入事項");
+  }
   // 把輸入的內容設為物件並push到data陣列中
   var todo = {
     content: str,
