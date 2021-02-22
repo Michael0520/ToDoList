@@ -28,4 +28,9 @@ body {
 
 .addList:hover {
     background: yellow;
+    border: 0 px;
+}
+
+.list a {
+    text-decoration: none;
 }

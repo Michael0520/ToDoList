@@ -1,4 +1,4 @@
-// 指定dom
+// 綁定dom
 var list = document.querySelector(".list");
 var addList = document.querySelector(".addList");
 // 待辦事項清單在新增或刪除後已經是以字串的方式儲存，要調用的時候要先轉回原本陣列型別
@@ -14,13 +14,16 @@ function saveItem(e) {
   e.preventDefault();
   var str = document.querySelector(".textClass").value;
   // 把輸入的內容設為物件並push到data陣列中
+  if (str.trim() === "") {
+    alert("請輸入事項");
+  }
   var todo = {
     content: str,
   };
   data.push(todo);
   // 加入陣列後需要更新清單
   updateList(data);
-  // 更新後將資料轉為字串存到localstorage
+  // 更新後將資料轉為字串存到 localstorage
   localStorage.setItem("toDoList", JSON.stringify(data));
 }
 
@@ -42,12 +45,12 @@ function updateList(items) {
 // 刪除待辦事項
 function deleteItem(e) {
   e.preventDefault();
-  // 確認點擊的位置是a連結也就是"刪除"
+  // 確認點擊的位置是 a 連結也就是"刪除"
   if (e.target.nodeName !== "A") {
     return;
   }
   var index = e.target.dataset.index;
-  // 依照index的位置刪除1個item
+  // 依照index的位置刪除 1 個 item
   data.splice(index, 1);
   localStorage.setItem("toDoList", JSON.stringify(data));
   updateList(data);
